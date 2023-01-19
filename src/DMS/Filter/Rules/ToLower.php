@@ -1,22 +1,24 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DMS\Filter\Rules;
 
 /**
- * ToLower Rule
+ * ToLower Rule.
  *
  * @Annotation
+ * @NamedArgumentConstructor
+ * @Target("PROPERTY")
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class ToLower extends Rule
 {
     /**
-     * Encoding to be used
+     * @param string|null $encoding Encoding to be used
      */
-    public ?string $encoding = null;
-
-    public function getDefaultOption(): ?string
-    {
-        return 'encoding';
+    public function __construct(
+        public ?string $encoding = null
+    ) {
     }
 }

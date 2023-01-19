@@ -1,24 +1,28 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DMS\Filter\Rules;
 
 /**
- * RegExp Rule
+ * RegExp Rule.
  *
  * Filter using preg_replace and unicode or non-unicode patterns
  *
  * @Annotation
+ * @NamedArgumentConstructor
+ * @Target("PROPERTY")
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class RegExp extends Rule
 {
     /**
-     * Unicode version of Pattern
+     * @param string|null $unicodePattern Unicode version of Pattern
+     * @param string|null $pattern        Reg Exp Pattern
      */
-    public string $unicodePattern;
-
-    /**
-     * Reg Exp Pattern
-     */
-    public string $pattern;
+    public function __construct(
+        public ?string $unicodePattern = null,
+        public ?string $pattern = null
+    ) {
+    }
 }

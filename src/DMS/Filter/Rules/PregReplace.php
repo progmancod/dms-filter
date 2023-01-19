@@ -9,21 +9,19 @@ namespace DMS\Filter\Rules;
  * replacement is defined.
  *
  * @Annotation
+ * @NamedArgumentConstructor
+ * @Target("PROPERTY")
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class PregReplace extends Rule
 {
     /**
-     * Regular Expression to use
+     * @param string|null $regexp      Regular Expression to use
+     * @param string      $replacement Replacement
      */
-    public ?string $regexp = null;
-
-    /**
-     * Replacement
-     */
-    public string $replacement = '';
-
-    public function getDefaultOption(): ?string
-    {
-        return 'regexp';
+    public function __construct(
+        public ?string $regexp = null,
+        public string $replacement = ''
+    ) {
     }
 }
