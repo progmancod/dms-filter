@@ -1,29 +1,28 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DMS\Filter\Rules;
 
-use const ENT_COMPAT;
-
 /**
- * Html Entities Filter
+ * Html Entities Filter.
  *
  * @Annotation
+ * @NamedArgumentConstructor
+ * @Target("PROPERTY")
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class HtmlEntities extends Rule
 {
     /**
-     * Flags
+     * @param int    $flags        Flags
+     * @param string $encoding     Encoding to be used
+     * @param bool   $doubleEncode Convert existing entities
      */
-    public int $flags = ENT_COMPAT;
-
-    /**
-     * Encoding to be used
-     */
-    public string $encoding = 'UTF-8';
-
-    /**
-     * Convert existing entities
-     */
-    public bool $doubleEncode = true;
+    public function __construct(
+        public int $flags = \ENT_COMPAT,
+        public string $encoding = 'UTF-8',
+        public bool $doubleEncode = true
+    ) {
+    }
 }

@@ -1,22 +1,25 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DMS\Filter\Rules;
 
 /**
- * Alpha Rule
+ * Alpha Rule.
  *
  * @Annotation
+ * @NamedArgumentConstructor
+ * @Target("PROPERTY")
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Alpha extends RegExp
 {
     /**
-     * Allow Whitespace or not
+     * @param bool $allowWhitespace Allow Whitespace or not
      */
-    public bool $allowWhitespace = true;
-
-    public function getDefaultOption(): ?string
-    {
-        return 'allowWhitespace';
+    public function __construct(
+        public bool $allowWhitespace = true
+    ) {
+        parent::__construct(null, null);
     }
 }
